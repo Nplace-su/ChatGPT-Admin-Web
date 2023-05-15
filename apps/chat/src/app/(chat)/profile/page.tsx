@@ -163,7 +163,7 @@ export default function Profile() {
 
           <ProfileItem
             title={Locale.Profile.Plan.Title}
-            subTitle=`当前账户会员等级：${plan}`
+            subTitle={`当前账户会员等级：${plan}`}
           >
             <>
               <button
