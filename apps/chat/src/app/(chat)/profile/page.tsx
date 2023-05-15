@@ -163,7 +163,7 @@ export default function Profile() {
 
           <ProfileItem
             title={Locale.Profile.Plan.Title}
-            subTitle="切换计划来升级"
+            subTitle="当前账户会员等级：${plan}"
           >
             <>
               <button
@@ -218,24 +218,6 @@ export default function Profile() {
           </ProfileItem>
         </List>
 
-        <List>
-          <ProfileItem
-            title={
-              plan == "free"
-                ? Locale.Profile.RateLimit.TitleFree
-                : Locale.Profile.RateLimit.Title(1)
-            }
-            subTitle={Locale.Profile.RateLimit.Subtitle}
-          >
-
-          </ProfileItem>
-
-          <ProfileItem
-            title={Locale.Profile.RateLimit.Interval}
-            subTitle={Locale.Profile.RateLimit.IntervalDesp}
-          >
-          </ProfileItem>
-        </List>
       </div>
     </>
   );
