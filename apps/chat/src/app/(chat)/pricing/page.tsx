@@ -35,7 +35,7 @@ const prices: Price[] = [
       quarterly: 0,
       yearly: 0,
     },
-    features: ["每小时 10 次免费问答", "每天 1 次 GPT-4 免费问答"],
+    features: ["每三小时 25 次免费问答", "每三小时 1 次 GPT-4 免费问答"],
   },
   {
     name: "Pro",
@@ -44,7 +44,7 @@ const prices: Price[] = [
       quarterly: 79,
       yearly: 259,
     },
-    features: ["每三小时 50 次 GPT-3.5 问答", "每天 3 次 GPT-4 免费问答"],
+    features: ["每三小时 100 次 GPT-3.5 问答", "每三小时 3 次 GPT-4 免费问答"],
   },
   {
     name: "Premium",
@@ -56,7 +56,7 @@ const prices: Price[] = [
     features: [
       "New Bing 免费",
       "GPT-3.5 无限制问答",
-      "每天 10 次 GPT-4 免费问答",
+      "每三小时 25 次 GPT-4 免费问答",
     ],
   },
 ];
