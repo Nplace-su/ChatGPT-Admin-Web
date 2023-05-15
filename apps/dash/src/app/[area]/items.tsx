@@ -103,7 +103,7 @@ export const orderColumns = [
   {
     prop: "plan",
     label: "计划",
-    // render: (plan: string) => getPlanTag(plan),
+    render: (plan: string) => getPlanTag(plan),
   },
   {
     prop: "status",
