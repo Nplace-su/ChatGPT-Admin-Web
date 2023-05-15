@@ -227,21 +227,13 @@ export default function Profile() {
             }
             subTitle={Locale.Profile.RateLimit.Subtitle}
           >
-            <input
-              type="range"
-              title={config.historyMessageCount.toString()}
-              value={requestNos.length}
-              min="0"
-              max={plan === "free" ? 10 : 50}
-              step="1"
-            ></input>
+
           </ProfileItem>
 
           <ProfileItem
             title={Locale.Profile.RateLimit.Interval}
             subTitle={Locale.Profile.RateLimit.IntervalDesp}
           >
-            <input type="number" min={500} max={4000} value={5}></input>
           </ProfileItem>
         </List>
       </div>
