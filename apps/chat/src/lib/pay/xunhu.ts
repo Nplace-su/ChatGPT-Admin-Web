@@ -5,6 +5,8 @@ import { type NextRequest } from "next/server";
 const appId = process.env.XUNHU_PAY_APPID!;
 const appSecret = process.env.XUNHU_PAY_APPSECRET!;
 const wapName = process.env.PAY_WAPNAME ?? "店铺名称";
+const wapUrl = process.env.PAY_wapUrl ?? "https://www.wendiansha.com";
+
 
 const domain = process.env.DOMAIN;
 const callbackDomain = process.env.callBackDoamin ?? domain;
@@ -106,7 +108,7 @@ export async function startPay({
     attach, // Return as is during callback. 📢We use it to confirm that the order has not been tampered with.
     nonce_str: orderId, // 1. Avoid server page caching 2. Prevent security keys from being guessed
     type: "WAP",
-    wap_url: `${domain}`,
+    wap_url: `${wapUrl}`,
     wap_name: wapName,
   };
   const stringA = sortAndSignParameters(fetchBody);
