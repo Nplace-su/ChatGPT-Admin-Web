@@ -218,32 +218,32 @@ export default function Profile() {
           </ProfileItem>
         </List>
 
-        {/*<List>*/}
-        {/*  <ProfileItem*/}
-        {/*    title={*/}
-        {/*      plan == "free"*/}
-        {/*        ? Locale.Profile.RateLimit.TitleFree*/}
-        {/*        : Locale.Profile.RateLimit.Title(1)*/}
-        {/*    }*/}
-        {/*    subTitle={Locale.Profile.RateLimit.Subtitle}*/}
-        {/*  >*/}
-        {/*    <input*/}
-        {/*      type="range"*/}
-        {/*      title={config.historyMessageCount.toString()}*/}
-        {/*      value={requestNos.length}*/}
-        {/*      min="0"*/}
-        {/*      max={plan === "free" ? 10 : 50}*/}
-        {/*      step="1"*/}
-        {/*    ></input>*/}
-        {/*  </ProfileItem>*/}
+        <List>
+          <ProfileItem
+            title={
+              plan == "free"
+                ? Locale.Profile.RateLimit.TitleFree
+                : Locale.Profile.RateLimit.Title(1)
+            }
+            subTitle={Locale.Profile.RateLimit.Subtitle}
+          >
+            <input
+              type="range"
+              title={config.historyMessageCount.toString()}
+              value={requestNos.length}
+              min="0"
+              max={plan === "free" ? 10 : 50}
+              step="1"
+            ></input>
+          </ProfileItem>
 
-        {/*  <ProfileItem*/}
-        {/*    title={Locale.Profile.RateLimit.Interval}*/}
-        {/*    subTitle={Locale.Profile.RateLimit.IntervalDesp}*/}
-        {/*  >*/}
-        {/*    <input type="number" min={500} max={4000} value={5}></input>*/}
-        {/*  </ProfileItem>*/}
-        {/*</List>*/}
+          <ProfileItem
+            title={Locale.Profile.RateLimit.Interval}
+            subTitle={Locale.Profile.RateLimit.IntervalDesp}
+          >
+            <input type="number" min={500} max={4000} value={5}></input>
+          </ProfileItem>
+        </List>
       </div>
     </>
   );
