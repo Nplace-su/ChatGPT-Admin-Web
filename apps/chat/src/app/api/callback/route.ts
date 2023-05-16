@@ -23,6 +23,8 @@ export async function POST(req: NextRequest) {
 
   // Add subscription for users.
   const subscriptionLogic = new SubscriptionLogic();
+  const userSubscription = await subscriptionLogic.listUserSubscriptions(order!.email);
+  console.log(userSubscription);
   await subscriptionLogic.append(order!.email, {
     startsAt: Date.now(),
     endsAt: Date.now() + 1000 * 60 * 60 * 24 * 31 * order!.count,
