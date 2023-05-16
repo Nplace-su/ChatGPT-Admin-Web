@@ -1,10 +1,9 @@
 import { NextRequest } from "next/server";
 import { handleCallback } from "@/lib/pay/xunhu";
 import { OrderLogic, SubscriptionLogic } from "database";
-import { Subscription } from '../types';
 
 
-const getLastMatchingSubscriptionEndsAt = (subscriptions: Subscription[], orderPlan: string): number => {
+const getLastMatchingSubscriptionEndsAt = (subscriptions: { plan: string; endsAt: number }[], orderPlan: string): number => {
   for (let i = subscriptions.length - 1; i >= 0; i--) {
     if (subscriptions[i].plan === orderPlan) {
       return subscriptions[i].endsAt;
