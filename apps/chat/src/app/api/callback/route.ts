@@ -3,7 +3,7 @@ import { handleCallback } from "@/lib/pay/xunhu";
 import { OrderLogic, SubscriptionLogic } from "database";
 
 
-const getLastMatchingSubscriptionEndsAt = (subscriptions: { plan: string; endsAt: number }[], orderPlan: string): number => {
+const getLastMatchingSubscriptionEndsAt = (subscriptions: { plan: string; startsAt: number; endsAt: number; tradeOrderId: string; }[] | null, orderPlan: string): number => {
   for (let i = subscriptions.length - 1; i >= 0; i--) {
     if (subscriptions[i].plan === orderPlan) {
       return subscriptions[i].endsAt;
