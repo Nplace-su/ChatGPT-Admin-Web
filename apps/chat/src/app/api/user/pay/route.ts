@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ status: ResponseStatus.Failed }); // @ts-ignore
   const totalPrices = planPrices[cycle];
 
-  let count;
+  let count = 1;
   switch(cycle) {
     case "monthly":
     count = 1;
