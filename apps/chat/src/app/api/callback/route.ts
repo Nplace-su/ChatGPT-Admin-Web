@@ -1,8 +1,10 @@
 import { NextRequest } from "next/server";
 import { handleCallback } from "@/lib/pay/xunhu";
 import { OrderLogic, SubscriptionLogic } from "database";
+import { Subscription } from '../types';
 
-const getLastMatchingSubscriptionEndsAt = (subscriptions, orderPlan) => {
+
+const getLastMatchingSubscriptionEndsAt = (subscriptions: Subscription[], orderPlan: string): number => {
   for (let i = subscriptions.length - 1; i >= 0; i--) {
     if (subscriptions[i].plan === orderPlan) {
       return subscriptions[i].endsAt;
@@ -32,7 +34,6 @@ export async function POST(req: NextRequest) {
   // Add subscription for users.
   const subscriptionLogic = new SubscriptionLogic();
   const userSubscription = await subscriptionLogic.listUserSubscriptions(order!.email);
-  console.log(userSubscription);
   const startsAt = getLastMatchingSubscriptionEndsAt(userSubscription, order!.plan);
   await subscriptionLogic.append(order!.email, {
     startsAt,
