@@ -2,6 +2,14 @@ import { NextRequest } from "next/server";
 import { handleCallback } from "@/lib/pay/xunhu";
 import { OrderLogic, SubscriptionLogic } from "database";
 
+const getLastMatchingSubscriptionEndsAt = (subscriptions, orderPlan) => {
+  for (let i = subscriptions.length - 1; i >= 0; i--) {
+    if (subscriptions[i].plan === orderPlan) {
+      return subscriptions[i].endsAt;
+    }
+  }
+  return Date.now();
+};
 /**
  * This is the callback interface for processing payment platforms.
  * @constructor
@@ -25,9 +33,10 @@ export async function POST(req: NextRequest) {
   const subscriptionLogic = new SubscriptionLogic();
   const userSubscription = await subscriptionLogic.listUserSubscriptions(order!.email);
   console.log(userSubscription);
+  const startsAt = getLastMatchingSubscriptionEndsAt(userSubscription, order!.plan);
   await subscriptionLogic.append(order!.email, {
-    startsAt: Date.now(),
-    endsAt: Date.now() + 1000 * 60 * 60 * 24 * 31 * order!.count,
+    startsAt,
+    endsAt: startsAt + 1000 * 60 * 60 * 24 * 31 * order!.count,
     plan: order!.plan,
     tradeOrderId: orderId,
   });
