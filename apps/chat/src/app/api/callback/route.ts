@@ -4,6 +4,9 @@ import { OrderLogic, SubscriptionLogic } from "database";
 
 
 const getLastMatchingSubscriptionEndsAt = (subscriptions: { plan: string; startsAt: number; endsAt: number; tradeOrderId: string; }[] | null, orderPlan: string): number => {
+  if (subscriptions === null) {
+    return Date.now();
+  }
   for (let i = subscriptions.length - 1; i >= 0; i--) {
     if (subscriptions[i].plan === orderPlan) {
       return subscriptions[i].endsAt;
