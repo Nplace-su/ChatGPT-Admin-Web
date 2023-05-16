@@ -23,12 +23,25 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ status: ResponseStatus.Failed }); // @ts-ignore
   const totalPrices = planPrices[cycle];
 
+  let count;
+  switch(cycle) {
+    case "monthly":
+    count = 1;
+    break;
+  case "quarterly":
+    count = 3;
+    break;
+  case "yearly":
+    count = 12;
+    break;
+  }
+
   const order = new OrderLogic();
   const orderId = await order.newOrder({
     createdAt: Date.now(),
     totalCents: totalPrices,
     plan,
-    count: 1,
+    count,
     status: "pending",
     email,
   });
