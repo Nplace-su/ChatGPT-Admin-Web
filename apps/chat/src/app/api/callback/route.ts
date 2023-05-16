@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   const subscriptionLogic = new SubscriptionLogic();
   await subscriptionLogic.append(order!.email, {
     startsAt: Date.now(),
-    endsAt: Date.now() + 1000 * 60 * 60 * 24 * 30,
+    endsAt: Date.now() + 1000 * 60 * 60 * 24 * 30 * order!.count,
     plan: order!.plan,
     tradeOrderId: orderId,
   });
