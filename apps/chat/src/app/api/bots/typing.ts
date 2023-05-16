@@ -16,7 +16,7 @@ export type ChatReponse = CreateChatCompletionResponse;
 
 const chatRole = z.enum(["assistant", "system", "user"]);
 export const gptModel = z.enum(["gpt-3.5-turbo", "gpt-4"]);
-const otherModel = z.enum(["new-bing"]);
+const otherModel = z.enum(["newbing"]);
 const chatRecord = z.object({
   role: chatRole,
   content: z.string(),
