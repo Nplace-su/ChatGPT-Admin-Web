@@ -37,7 +37,7 @@ export async function POST(
       const validatedModel = gptModel.parse(model);
       bot = new OpenAIBot(OPENAI_API_KEY, validatedModel);
       break;
-    case "new-bing":
+    case "newbing":
       bot = new BingBot(BING_COOKIE);
       break;
     default:
