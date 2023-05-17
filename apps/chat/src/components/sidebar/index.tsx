@@ -126,25 +126,6 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
           <ChatList />
         </div>
 
-        {rateLimit && (
-          <div className={styles["sidebar-balance-box"]}>
-            <div className={styles["sidebar-balance"]}>
-              <div className={styles["sidebar-balance-title"]}>当前余量</div>
-              <div className={styles["sidebar-balance-num"]}>
-                <span>{rateLimit.remaining}</span>次
-              </div>
-            </div>
-            <div
-              className={styles["sidebar-balance-button"]}
-              onClick={() => {
-                router.push("/pricing");
-              }}
-            >
-              点我充值
-            </div>
-          </div>
-        )}
-
         <div className={styles["sidebar-tail"]}>
           <div className={styles["sidebar-actions"]}>
             <div className={styles["sidebar-action"] + " " + styles.mobile}>
