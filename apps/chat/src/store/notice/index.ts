@@ -13,7 +13,7 @@ interface NoticeStore {
 export const useNoticeStore = create<NoticeStore>()(
   persist(
     (set, get) => ({
-      notice: undefined,
+      notice: "更多功能正在开发中，关注公众号“Ai问点啥”获取网站最新动态和前沿Ai消息。如有任何问题请添加客服wx处理:nplace_sh",
       noticeHash: undefined,
 
       updateNotice(notice: string) {
