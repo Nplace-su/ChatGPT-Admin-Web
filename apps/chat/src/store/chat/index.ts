@@ -38,7 +38,7 @@ export const ALL_MODELS = [
   },
   {
     name: "newbing",
-    available: true,
+    available: false,
   },
 ];
 
