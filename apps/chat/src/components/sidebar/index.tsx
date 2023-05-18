@@ -105,6 +105,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
             className={styles["sidebar-bar-button"]}
             onClick={() => {
               router.push("/profile");
+              setShowSideBar(false);
             }}
           />
           <IconButton
@@ -113,6 +114,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
             className={styles["sidebar-bar-button"]}
             onClick={() => {
               router.push("/pricing");
+              setShowSideBar(false);
             }}
           />
         </div>
