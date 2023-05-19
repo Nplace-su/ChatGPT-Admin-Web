@@ -16,7 +16,7 @@ export class OpenAIBot extends AbstractBot {
 
   protected async *doAnswer(params: AnswerParams): AsyncIterable<string> {
     const { conversation, maxTokens, signal } = params;
-
+    console.log(conversation);
     const response = await fetch(COMPLETIONS_URL, {
       method: 'POST',
       headers: {
