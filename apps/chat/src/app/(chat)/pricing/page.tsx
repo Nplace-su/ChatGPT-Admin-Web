@@ -41,7 +41,7 @@ const prices: Price[] = [
     name: "Pro",
     price: {
       monthly: 39,
-      quarterly: 299,
+      quarterly: 99,
       yearly: 299,
     },
     features: ["每天 200 次 GPT-3.5 问答", "每天 10 次 GPT-4 问答"],
