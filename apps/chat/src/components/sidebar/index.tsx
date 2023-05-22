@@ -91,13 +91,15 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
             <div className={styles["sidebar-sub-title"]}>
               {Locale.Index.SubTitle}{" "}
               <span className={styles["sidebar-ad"]}>{wechatOA}</span>
+              <img src="/gongzhonghao.jpg" alt="扫码关注微信公众号" className={styles["wechat-image"]}/>
             </div>
           )}
           <div className={styles["sidebar-logo"]}>
             <ChatGptIcon />
           </div>
         </div>
-
+        
+        <hr className={styles["beautiful-divider"]} />
         <div className={styles["sidebar-header-bar"]}>
           <IconButton
             icon={<UserIcon />}
