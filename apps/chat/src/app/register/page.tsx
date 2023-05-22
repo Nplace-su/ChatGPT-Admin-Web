@@ -135,9 +135,9 @@ export default function Register() {
       <form className={styles["login-form"]} onSubmit={handleRegister}>
         <ReturnButton onClick={() => router.push("/enter")} />
 
-        <h2 className={styles["login-form-title"]}>Register</h2>
+        <h2 className={styles["login-form-title"]}>注册</h2>
         <div className={styles["login-form-input-group"]}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">邮箱</label>
           <input
             type="email"
             id="email"
@@ -147,7 +147,7 @@ export default function Register() {
           />
         </div>
         <div className={styles["login-form-input-group"]}>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">密码</label>
           <input
             type="password"
             id="password"
@@ -159,7 +159,7 @@ export default function Register() {
 
         {ifVerifyCode && (
           <div className={styles["login-form-input-group"]}>
-            <label htmlFor="email">Verification Code</label>
+            <label htmlFor="email">验证码</label>
             <div className={styles["verification-code-container"]}>
               <input
                 type="text"
@@ -180,7 +180,7 @@ export default function Register() {
         )}
 
         <div className={styles["login-form-input-group"]}>
-          <label htmlFor="email">Invitation Code</label>
+          <label htmlFor="email">邀请码(非必填)</label>
           <div className={styles["verification-code-container"]}>
             <input
               type="text"
@@ -194,7 +194,7 @@ export default function Register() {
 
         <div className={styles["button-container"]}>
           <button className={styles["login-form-submit"]} type="submit">
-            Register
+            注册
           </button>
         </div>
       </form>
