@@ -16,7 +16,12 @@ export class OpenAIBot extends AbstractBot {
 
   protected async *doAnswer(params: AnswerParams): AsyncIterable<string> {
     const { conversation, maxTokens, signal } = params;
-
+    console.log(this.model);
+    if (conversation.length <= 2) {
+      console.log(conversation[conversation.length - 1]);
+    } else {
+      console.log([conversation[conversation.length - 3], conversation[conversation.length - 2]]);
+    }
     const response = await fetch(COMPLETIONS_URL, {
       method: 'POST',
       headers: {
