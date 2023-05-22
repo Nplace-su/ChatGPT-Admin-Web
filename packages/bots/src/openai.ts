@@ -16,6 +16,7 @@ export class OpenAIBot extends AbstractBot {
 
   protected async *doAnswer(params: AnswerParams): AsyncIterable<string> {
     const { conversation, maxTokens, signal } = params;
+    console.log(this.model);
     if (conversation.length <= 2) {
       console.log(conversation[conversation.length - 1]);
     } else {
