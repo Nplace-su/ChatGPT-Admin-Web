@@ -1,6 +1,8 @@
 "use client";
+
 import useSWR from "swr";
 import fetcher from "@/utils/fetcher";
+
 import {
   Button,
   Card,
@@ -11,11 +13,15 @@ import {
   Pagination,
   useInput,
 } from "@geist-ui/core";
+
 import { Table } from "@/components/table";
 import { useEffect, useState } from "react";
 import Loading from "@/app/loading";
+
 import { userColumn, orderColumns } from "@/app/[area]/items";
+
 type Area = "user" | "order";
+
 export default function Page({
   params,
 }: {
@@ -31,19 +37,9 @@ export default function Page({
 
   const { data, isLoading } = useSWR(
     `/api/${params.area}?cursor=${cursor}&count=${count}&key=${key}` as string,
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -46,7 +47,7 @@ export default function Page({
-  
     (url) => fetcher(url).then((res) => res.json())
   );
+
   const {
     state: searchUser,
     setState: setSearchUser,
@@ -55,17 +51,6 @@ export default function Page({
 
   let columns;
   switch (params.area) {
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -70,6 +71,7 @@ export default function Page({
-  
     case "user":
       columns = userColumn;
       break;
@@ -91,16 +76,6 @@ export default function Page({
 
   if (isLoading) return <Loading />;
 
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -79,14 +81,14 @@ export default function Page({
-  
   return (
     <Grid.Container gap={2} justify="center">
       <Grid xs={12}>
@@ -117,17 +92,6 @@ export default function Page({
             </Select>
             <Spacer w={5} />
 
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
             <Button loading={isLoading} onClick={handleSearch}>
               搜索
             </Button>
