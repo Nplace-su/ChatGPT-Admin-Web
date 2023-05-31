@@ -75,4 +75,6 @@ export async function POST(
   );
 }
 export const runtime = 'edge';
-export const regions = ['sfo1'];
+export const config = {
+  regions: ['sfo1'],
+};
