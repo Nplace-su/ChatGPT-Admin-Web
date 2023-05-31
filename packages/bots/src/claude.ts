@@ -84,6 +84,8 @@ export class ClaudeBot extends AbstractBot {
       const data = line.slice('data:'.length).trim();
 
       if (!data || data === '[DONE]') continue;
+	    
+      console.log(data);
 
       const {
         choices: [
