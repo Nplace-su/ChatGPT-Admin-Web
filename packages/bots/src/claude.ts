@@ -48,6 +48,7 @@ export class ClaudeBot extends AbstractBot {
         'x-api-key': `${this.apiKey}`,
       },
       body: JSON.stringify({
+			  stop_sequences: ['\n\nHuman:'],
         model: this.model,
         prompt: prompt,
         max_tokens_to_sample: maxTokens,
