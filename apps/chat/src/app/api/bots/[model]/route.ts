@@ -1,4 +1,4 @@
-import { OpenAIBot, BingBot } from "bots";
+import { OpenAIBot, BingBot, ClaudeBot } from "bots";
 import { NextRequest, NextResponse } from "next/server";
 import { gptModel, postPayload } from "@/app/api/bots/typing";
 import { textSecurity } from "@/lib/content";
