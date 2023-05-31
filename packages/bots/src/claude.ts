@@ -72,18 +72,10 @@ export class ClaudeBot extends AbstractBot {
 	    stream: true,
 	}),
     });
-    console.log({
-	    model: this.model,
-	    prompt: prompt,
-	    max_tokens_to_sample: 3000,
-	    stream: true,
-	});
 
     if (!response.ok) {
       throw new Error(`Claude API error: ${response.statusText}`);
     }
-    const data = await response.json();
-    console.log(data);
     const lines = streamToLineIterator(response.body!);
 
     for await (const line of lines) {
