@@ -69,24 +69,16 @@ export class ClaudeBot extends AbstractBot {
 	    model: this.model,
 	    prompt: prompt,
 	    max_tokens_to_sample: 3000,
-	    temperature: 1.0,
+	    stream: true,
 	}),
     });
     console.log({
-        'Content-Type': 'application/json',
-        'x-api-key': `${this.apiKey}`,
-      });
-    console.log({
-	stop_sequences: ['\n\nHuman:'],
-        model: this.model,
-        prompt: prompt,
-        max_tokens_to_sample: 8000,
-        stream: false,
-      });
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.json());
-    
+	    model: this.model,
+	    prompt: prompt,
+	    max_tokens_to_sample: 3000,
+	    stream: true,
+	});
+
     if (!response.ok) {
       throw new Error(`Claude API error: ${response.statusText}`);
     }
