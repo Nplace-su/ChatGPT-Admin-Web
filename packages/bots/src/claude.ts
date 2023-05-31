@@ -14,7 +14,7 @@ export class ClaudeBot extends AbstractBot {
     // Define your role mappings here, e.g.
     "user": "Human",
     "assistant": "Assistant",
-  };
+  },
   ) {
     super();
   }
@@ -40,7 +40,7 @@ export class ClaudeBot extends AbstractBot {
     } else {
       console.log([conversation[conversation.length - 3], conversation[conversation.length - 2]]);
     }
-    const string prompt = convertMessagesToPrompt(conversation);
+    const prompt = convertMessagesToPrompt(conversation);
     const response = await fetch(COMPLETIONS_URL, {
       method: 'POST',
       headers: {
