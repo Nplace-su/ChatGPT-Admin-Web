@@ -44,6 +44,7 @@ export async function POST(
       break;
     case "claude":
       bot = new ClaudeBot(CLAUDE_API_KEY);
+      break
     default:
       return NextResponse.json(
         { msg: "unable to find model" },
