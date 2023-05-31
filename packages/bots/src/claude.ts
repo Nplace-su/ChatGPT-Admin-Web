@@ -55,7 +55,10 @@ export class ClaudeBot extends AbstractBot {
       }),
       signal,
     });
-
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.body);
+    
     if (!response.ok) {
       throw new Error(`Claude API error: ${response.statusText}`);
     }
