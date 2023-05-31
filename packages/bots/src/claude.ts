@@ -82,7 +82,8 @@ export class ClaudeBot extends AbstractBot {
     if (!response.ok) {
       throw new Error(`Claude API error: ${response.statusText}`);
     }
-
+    const data = await response.json();
+    console.log(data);
     const lines = streamToLineIterator(response.body!);
 
     for await (const line of lines) {
