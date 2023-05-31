@@ -44,11 +44,14 @@ export class ClaudeBot extends AbstractBot {
     const response = await fetch(COMPLETIONS_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': `${this.apiKey}`,
+	Accept: 'application/json',
+	Authorization: `Bearer ${this.apiKey}`,
+	'Content-Type': 'application/json',
+	Client: 'anthropic-typescript/0.4.3',
+	'X-API-Key': this.apiKey,
       },
       body: JSON.stringify({
-			  stop_sequences: ['\n\nHuman:'],
+	stop_sequences: ['\n\nHuman:'],
         model: this.model,
         prompt: prompt,
         max_tokens_to_sample: maxTokens,
@@ -56,6 +59,17 @@ export class ClaudeBot extends AbstractBot {
       }),
       signal,
     });
+    console.log({
+        'Content-Type': 'application/json',
+        'x-api-key': `${this.apiKey}`,
+      });
+    console.log({
+	stop_sequences: ['\n\nHuman:'],
+        model: this.model,
+        prompt: prompt,
+        max_tokens_to_sample: maxTokens,
+        stream: true,
+      });
     console.log(response.status);
     console.log(response.statusText);
     console.log(response.body);
