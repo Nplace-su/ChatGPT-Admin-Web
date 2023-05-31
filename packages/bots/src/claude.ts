@@ -41,23 +41,36 @@ export class ClaudeBot extends AbstractBot {
       console.log([conversation[conversation.length - 3], conversation[conversation.length - 2]]);
     }
     const prompt = this.convertMessagesToPrompt(conversation);
-    const response = await fetch(COMPLETIONS_URL, {
-      method: 'POST',
-      headers: {
-	Accept: 'application/json',
-	Authorization: `Bearer ${this.apiKey}`,
-	'Content-Type': 'application/json',
-	Client: 'anthropic-typescript/0.4.3',
-	'X-API-Key': this.apiKey,
-      },
-      body: JSON.stringify({
-	stop_sequences: ['\n\nHuman:'],
-        model: this.model,
-        prompt: prompt,
-        max_tokens_to_sample: maxTokens,
-        stream: true,
-      }),
-      signal,
+//     const response = await fetch(COMPLETIONS_URL, {
+//       method: 'POST',
+//       headers: {
+// 	Accept: 'application/json',
+// 	Authorization: `Bearer ${this.apiKey}`,
+// 	'Content-Type': 'application/json',
+// 	Client: 'anthropic-typescript/0.4.3',
+// 	'X-API-Key': this.apiKey,
+//       },
+//       body: JSON.stringify({
+// 	stop_sequences: ['\n\nHuman:'],
+//         model: this.model,
+//         prompt: prompt,
+//         max_tokens_to_sample: maxTokens,
+//         stream: true,
+//       }),
+//       signal,
+//     });
+    const response = await fetch('https://api.anthropic.com/v1/complete', {
+	method: 'POST',
+	headers: {
+	    'Content-Type': 'application/json',
+	    'X-API-Key': this.apiKey,
+	},
+	body: JSON.stringify({
+	    model: this.model,
+	    prompt: prompt,
+	    max_tokens_to_sample: 3000,
+	    temperature: 1.0,
+	}),
     });
     console.log({
         'Content-Type': 'application/json',
@@ -72,7 +85,7 @@ export class ClaudeBot extends AbstractBot {
       });
     console.log(response.status);
     console.log(response.statusText);
-    console.log(response.body);
+    console.log(response.json());
     
     if (!response.ok) {
       throw new Error(`Claude API error: ${response.statusText}`);
