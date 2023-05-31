@@ -67,7 +67,7 @@ export class ClaudeBot extends AbstractBot {
 	stop_sequences: ['\n\nHuman:'],
         model: this.model,
         prompt: prompt,
-        max_tokens_to_sample: maxTokens,
+        max_tokens_to_sample: 8000,
         stream: true,
       });
     console.log(response.status);
