@@ -10,7 +10,7 @@ export class ClaudeBot extends AbstractBot {
   constructor(
     private readonly apiKey: string,
     private readonly model: string = 'claude-v1.3',
-    private readonly role_map: { [key: ChatRole]: string } = {
+    private readonly role_map: { [key: string]: string } = {
     // Define your role mappings here, e.g.
     "user": "Human",
     "assistant": "Assistant",
@@ -23,9 +23,9 @@ export class ClaudeBot extends AbstractBot {
   private convertMessagesToPrompt(messages: ChatRecord[]): string {
     let prompt = '';
     for (const message of messages) {
-      const role: ChatRole = message['role'];
-      const content: string = message['content'];
-      const transformed_role: string = this.role_map[role] || 'Human';
+      const role = message['role'];
+      const content = message['content'];
+      const transformed_role = this.role_map[role] || 'Human';
       prompt += `\n\n${transformed_role}: ${content}`;
     }
     prompt += '\n\nAssistant: ';
@@ -40,7 +40,7 @@ export class ClaudeBot extends AbstractBot {
     } else {
       console.log([conversation[conversation.length - 3], conversation[conversation.length - 2]]);
     }
-    const prompt = convertMessagesToPrompt(conversation);
+    const prompt = this.convertMessagesToPrompt(conversation);
     const response = await fetch(COMPLETIONS_URL, {
       method: 'POST',
       headers: {
