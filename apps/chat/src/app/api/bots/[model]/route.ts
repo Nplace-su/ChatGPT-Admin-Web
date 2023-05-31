@@ -8,6 +8,7 @@ import { LimitReason } from "@/typing.d";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY!;
 const BING_COOKIE = process.env.BING_COOKIE!;
+const CLAUDE_API_KEY = process.env.CLAUDE_API_KEY!;
 
 export async function POST(
   req: NextRequest,
@@ -41,6 +42,8 @@ export async function POST(
     case "newbing":
       bot = new BingBot(BING_COOKIE);
       break;
+    case "claude":
+      bot = new ClaudeBot(CLAUDE_API_KEY);
     default:
       return NextResponse.json(
         { msg: "unable to find model" },
