@@ -74,7 +74,5 @@ export async function POST(
     bot.answerStream({ conversation, signal: req.signal })
   );
 }
-export const config = {
-  runtime: 'edge',
-  regions: ['sfo1'],
-};
+export const runtime = 'edge';
+export const regions = ['sfo1'];
