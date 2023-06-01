@@ -50,6 +50,7 @@ export class OpenAIBot extends AbstractBot {
 
       if (!data || data === '[DONE]') continue;
 
+      console.log(data);
       const {
         choices: [
           {
