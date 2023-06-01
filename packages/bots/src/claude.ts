@@ -60,20 +60,18 @@ export class ClaudeBot extends AbstractBot {
       throw new Error(`Claude API error: ${response.statusText}`);
     }
     const lines = streamToLineIterator(response.body!);
-
+    let lastCompletion = '';
     for await (const line of lines) {
       if (!line.startsWith('data:')) continue;
-
       const data = line.slice('data:'.length).trim();
-
       if (!data || data === '[DONE]') continue;
-	    
-      console.log(data);
-
       const { completion } = JSON.parse(data);
-
       if (!completion) continue;
-      yield completion;
+      if (lastCompletion.length < completion.length) {
+	const addedText = completion.slice(lastCompletion.length);
+	lastCompletion = completion;
+	yield addedText;
+      }
     }
   }
 }
