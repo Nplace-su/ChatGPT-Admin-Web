@@ -37,6 +37,10 @@ export const ALL_MODELS = [
     available: true,
   },
   {
+    name: "claude-v1.3",
+    available: true,
+  },
+  {
     name: "newbing",
     available: false,
   },

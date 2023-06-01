@@ -85,6 +85,8 @@ export async function requestChatStream(
     const res = await fetcher(
       options?.modelConfig?.model === "newbing"
         ? "/api/bots/newbing"
+        : options?.modelConfig?.model === "claude-v1.3"
+        ? "/api/bots/claude"
         : "/api/bots/openai",
       {
         method: "POST",

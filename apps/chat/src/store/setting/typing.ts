@@ -1,4 +1,4 @@
-export type Model = "gpt-3.5-turbo" | "gpt-4" | "newbing";
+export type Model = "gpt-3.5-turbo" | "gpt-4" | "newbing" | "claude-v1.3";
 
 export enum SubmitKey {
   Enter = "Enter",

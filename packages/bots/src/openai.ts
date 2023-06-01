@@ -57,7 +57,7 @@ export class OpenAIBot extends AbstractBot {
           },
         ],
       } = JSON.parse(data);
-
+      
       if (!content) continue;
       yield content;
     }
