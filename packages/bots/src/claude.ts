@@ -87,16 +87,10 @@ export class ClaudeBot extends AbstractBot {
 	    
       console.log(data);
 
-      const {
-        choices: [
-          {
-            delta: { content },
-          },
-        ],
-      } = JSON.parse(data);
+      const { completion } = JSON.parse(data);
 
-      if (!content) continue;
-      yield content;
+      if (!completion) continue;
+      yield completion;
     }
   }
 }
