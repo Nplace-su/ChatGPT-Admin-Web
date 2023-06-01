@@ -70,6 +70,7 @@ export class ClaudeBot extends AbstractBot {
       if (lastCompletion.length < completion.length) {
 	const addedText = completion.slice(lastCompletion.length);
 	lastCompletion = completion;
+	console.log(addedText);
 	yield addedText;
       }
     }
