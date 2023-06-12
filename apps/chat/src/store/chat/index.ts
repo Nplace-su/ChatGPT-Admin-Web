@@ -318,7 +318,7 @@ export const useChatStore = create<ChatStore>()(
               date: "",
             }),
             {
-              filterBot: false,
+              filterBot: true,
               onMessage(message, done) {
                 session.topic = trimTopic(message);
                 if (done) {
@@ -333,13 +333,6 @@ export const useChatStore = create<ChatStore>()(
               },
             }
           );
-//           requestWithPrompt(session.messages, Locale.Store.Prompt.Topic).then(
-//             (res) => {
-//               get().updateCurrentSession(
-//                 (session) => (session.topic = trimTopic(res))
-//               );
-//             }
-//           );
         }
 
         const config = settingStore.config;
