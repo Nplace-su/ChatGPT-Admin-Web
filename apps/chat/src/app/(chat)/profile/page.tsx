@@ -177,6 +177,27 @@ export default function Profile() {
         </List>
 
         {subscription && <SubscribeTable data={subscription} />}
+        
+        <List>
+          <ProfileItem
+            title={Locale.Profile.Invite.Title}
+            subTitle={Locale.Profile.Invite.SubTitle}
+          >
+            <button
+              className={styles["copy-button"]}
+              value={config.submitKey}
+              onClick={() => {
+                if (inviteCode)
+                  copyToClipboard(
+                    `${window.location.origin}/register?code=${inviteCode}`
+                  );
+                else setShouldGetInviteCode(true);
+              }}
+            >
+              {Locale.Profile.Invite.CopyInviteLink}
+            </button>
+          </ProfileItem>
+        </List>
 
       </div>
     </>
