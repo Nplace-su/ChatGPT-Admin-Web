@@ -266,7 +266,7 @@ export function Chat() {
   });
   
   const renameSession = () => {
-    const newTopic = prompt(Locale.Chat.Rename, session.topic);
+    const newTopic = prompt("重命名对话", session.topic);
     if (newTopic && newTopic !== session.topic) {
       chatStore.updateCurrentSession((session) => (session.topic = newTopic!));
     }
