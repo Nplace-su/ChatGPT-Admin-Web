@@ -16,6 +16,7 @@ import styles from "@/styles/module/home.module.scss";
 import Locale from "@/locales";
 
 import MenuIcon from "@/assets/icons/menu.svg";
+import RenameIcon from "@/assets/icons/rename.svg";
 import BrainIcon from "@/assets/icons/brain.svg";
 import ExportIcon from "@/assets/icons/export.svg";
 import LoadingIcon from "@/assets/icons/three-dots.svg";
@@ -263,6 +264,13 @@ export function Chat() {
       }
     }, 500);
   });
+  
+  const renameSession = () => {
+    const newTopic = prompt(Locale.Chat.Rename, session.topic);
+    if (newTopic && newTopic !== session.topic) {
+      chatStore.updateCurrentSession((session) => (session.topic = newTopic!));
+    }
+  };
 
   return (
     <div className={styles.chat} key={session.id}>
@@ -272,8 +280,11 @@ export function Chat() {
             className={styles["window-header-title"]}
             onClick={() => setSideBarOpen(true)}
           >
-            <div className={styles["window-header-main-title"]}>
-              {session.topic}
+            <div
+              className={`window-header-main-title " ${styles["chat-body-title"]}`}
+              onClickCapture={renameSession}
+            >
+              {!session.topic ? DEFAULT_TOPIC : session.topic}
             </div>
             <div className={styles["window-header-sub-title"]}>
               {Locale.Chat.SubTitle(session.messages.length)}
@@ -288,6 +299,13 @@ export function Chat() {
               bordered
               title={Locale.Chat.Actions.ChatList}
               onClick={() => setSideBarOpen(true)}
+            />
+          </div>
+          <div className="window-action-button">
+            <IconButton
+              icon={<RenameIcon />}
+              bordered
+              onClick={renameSession}
             />
           </div>
           <div className={styles["window-action-button"]}>
