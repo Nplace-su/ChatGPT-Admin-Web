@@ -282,7 +282,7 @@ export function Chat() {
             onClick={() => setSideBarOpen(true)}
           >
             <div
-              className={`window-header-main-title " ${styles["chat-body-title"]}`}
+              className={styles["window-header-main-title"]}
               onClickCapture={renameSession}
             >
               {!session.topic ? DEFAULT_TOPIC : session.topic}
