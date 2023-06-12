@@ -85,7 +85,7 @@ export function filterConfig(config: ModelConfig): Partial<ModelConfig> {
 /**
  * 默认对话Topic, 创建空对话的配置
  */
-const DEFAULT_TOPIC = Locale.Store.DefaultTopic;
+export const DEFAULT_TOPIC = Locale.Store.DefaultTopic;
 
 function createEmptySession(): ChatSession {
   const createDate = new Date().toLocaleString();
@@ -311,11 +311,26 @@ export const useChatStore = create<ChatStore>()(
 
         if (session.topic === DEFAULT_TOPIC && session.messages.length >= 3) {
           // should summarize topic
-          requestWithPrompt(session.messages, Locale.Store.Prompt.Topic).then(
-            (res) => {
-              get().updateCurrentSession(
-                (session) => (session.topic = trimTopic(res))
-              );
+          requestChatStream(
+            session.messages.concat({
+              role: "user",
+              content: Locale.Store.Prompt.Topic,
+              date: "",
+            }),
+            {
+              filterBot: true,
+              onMessage(message, done) {
+                session.topic = trimTopic(message);
+                if (done) {
+                  console.log("[Topic] ", session.topic);
+                }
+              },
+              onBlock() {
+                session.topic = DEFAULT_TOPIC;
+              },
+              onError(error) {
+                console.error("[Topic] ", error);
+              },
             }
           );
         }

@@ -46,7 +46,7 @@ export async function requestChat(messages: Message[]) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req),
   });
-
+  console.log(res);
   return (await res.json()) as ChatReponse;
 }
 

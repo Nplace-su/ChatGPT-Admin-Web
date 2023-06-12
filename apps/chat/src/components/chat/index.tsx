@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import {Message, useChatStore, useSettingStore, useUserStore} from "@/store";
+import {Message, useChatStore, useSettingStore, useUserStore, DEFAULT_TOPIC} from "@/store";
 import {ChatSession} from "@/store/chat/typing";
 import {SubmitKey} from "@/store/setting/typing";
 
@@ -16,6 +16,7 @@ import styles from "@/styles/module/home.module.scss";
 import Locale from "@/locales";
 
 import MenuIcon from "@/assets/icons/menu.svg";
+import RenameIcon from "@/assets/icons/rename.svg";
 import BrainIcon from "@/assets/icons/brain.svg";
 import ExportIcon from "@/assets/icons/export.svg";
 import LoadingIcon from "@/assets/icons/three-dots.svg";
@@ -125,6 +126,7 @@ const Markdown = dynamic(
 );
 
 export function Chat() {
+  const chatStore = useChatStore();
   const email = useUserStore((state) => state.email);
 
   const {data: PlanAndInviteCode, isLoading: PlanLoading} = useSWR(
@@ -263,6 +265,13 @@ export function Chat() {
       }
     }, 500);
   });
+  
+  const renameSession = () => {
+    const newTopic = prompt("重命名对话", session.topic);
+    if (newTopic && newTopic !== session.topic) {
+      chatStore.updateCurrentSession((session) => (session.topic = newTopic!));
+    }
+  };
 
   return (
     <div className={styles.chat} key={session.id}>
@@ -272,8 +281,11 @@ export function Chat() {
             className={styles["window-header-title"]}
             onClick={() => setSideBarOpen(true)}
           >
-            <div className={styles["window-header-main-title"]}>
-              {session.topic}
+            <div
+              className={styles["window-header-main-title"]}
+              onClickCapture={renameSession}
+            >
+              {!session.topic ? DEFAULT_TOPIC : session.topic}
             </div>
             <div className={styles["window-header-sub-title"]}>
               {Locale.Chat.SubTitle(session.messages.length)}
@@ -288,6 +300,13 @@ export function Chat() {
               bordered
               title={Locale.Chat.Actions.ChatList}
               onClick={() => setSideBarOpen(true)}
+            />
+          </div>
+          <div className="window-action-button">
+            <IconButton
+              icon={<RenameIcon />}
+              bordered
+              onClick={renameSession}
             />
           </div>
           <div className={styles["window-action-button"]}>
