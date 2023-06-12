@@ -311,13 +311,35 @@ export const useChatStore = create<ChatStore>()(
 
         if (session.topic === DEFAULT_TOPIC && session.messages.length >= 3) {
           // should summarize topic
-          requestWithPrompt(session.messages, Locale.Store.Prompt.Topic).then(
-            (res) => {
-              get().updateCurrentSession(
-                (session) => (session.topic = trimTopic(res))
-              );
+          requestChatStream(
+            session.messages.concat({
+              role: "user",
+              content: Locale.Store.Prompt.Topic,
+              date: "",
+            }),
+            {
+              filterBot: false,
+              onMessage(message, done) {
+                session.topic = trimTopic(message);
+                if (done) {
+                  console.log("[Topic] ", session.topic);
+                }
+              },
+              onBlock() {
+                session.topic = DEFAULT_TOPIC;
+              },
+              onError(error) {
+                console.error("[Topic] ", error);
+              },
             }
           );
+//           requestWithPrompt(session.messages, Locale.Store.Prompt.Topic).then(
+//             (res) => {
+//               get().updateCurrentSession(
+//                 (session) => (session.topic = trimTopic(res))
+//               );
+//             }
+//           );
         }
 
         const config = settingStore.config;
