@@ -126,6 +126,7 @@ const Markdown = dynamic(
 );
 
 export function Chat() {
+  const chatStore = useChatStore();
   const email = useUserStore((state) => state.email);
 
   const {data: PlanAndInviteCode, isLoading: PlanLoading} = useSWR(
