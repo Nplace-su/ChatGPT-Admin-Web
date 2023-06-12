@@ -85,7 +85,7 @@ export function filterConfig(config: ModelConfig): Partial<ModelConfig> {
 /**
  * 默认对话Topic, 创建空对话的配置
  */
-const DEFAULT_TOPIC = Locale.Store.DefaultTopic;
+export const DEFAULT_TOPIC = Locale.Store.DefaultTopic;
 
 function createEmptySession(): ChatSession {
   const createDate = new Date().toLocaleString();
