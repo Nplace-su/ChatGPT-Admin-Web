@@ -29,7 +29,7 @@ export class OpenAIBot extends AbstractBot {
         Authorization: `Bearer ${this.apiKey}`,
       },
       body: JSON.stringify({
-        model: this.model,
+        model: this.model === 'gpt-3.5-turbo' ? 'gpt-3.5-turbo-0613': this.model === 'gpt-4' ? 'gpt-4-0613': this.model,
         messages: conversation,
         max_tokens: maxTokens,
         stream: true,
