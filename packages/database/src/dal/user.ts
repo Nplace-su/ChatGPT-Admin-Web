@@ -26,6 +26,16 @@ export class UserDAL extends AbstractDataAccessLayer<User> {
   }
 
   async readPlan(email: string): Promise<string | null> {
+    const endsAt = (
+    await this.redis.json.get(
+      this.getKey(email),
+      '$.subscriptions[-1].endsAt'
+    )
+    )?.[0] ?? null;
+    
+    if (endsAt && new Date(endsAt) < new Date()) {
+      return null;
+    }
     return (
       (
         await this.redis.json.get(
