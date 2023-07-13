@@ -9,7 +9,11 @@ const getLastMatchingSubscriptionEndsAt = (subscriptions: { plan: string; starts
   }
   for (let i = subscriptions.length - 1; i >= 0; i--) {
     if (subscriptions[i].plan === orderPlan) {
-      return subscriptions[i].endsAt;
+      if (subscriptions[i].endsAt < Date.now()) {
+        return Date.now();
+      } else {
+        return subscriptions[i].endsAt;
+      }
     }
   }
   return Date.now();
